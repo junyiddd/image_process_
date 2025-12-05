@@ -51,6 +51,13 @@ int main(int argc, char* argv[])
         cout << "图像数据加载失败！" << endl;
         return -1;
     }
+    // 转换成uint8
+    if (image_1.depth() != CV_8U) {
+        normalize(image_1, image_1, 0, 255, NORM_MINMAX, CV_8U);
+    }
+    if (image_2.depth() != CV_8U) {
+        normalize(image_2, image_2, 0, 255, NORM_MINMAX, CV_8U);
+    }
 
     // 创建文件夹保存图像
     const char* newfile = "./image_save";
